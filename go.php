@@ -290,7 +290,9 @@ function get_item($ItemID, $force = false)
 	if (!file_exists($filename))
 	{
 		$url = 'https://www.biodiversitylibrary.org/api2/httpquery.ashx?op=GetItemMetadata&itemid=' 
-			. $ItemID . '&ocr=t&pages=t&apikey=' . $config['api_key'] . '&format=json';
+			. $ItemID . '&ocr=f&pages=t&apikey=' . $config['api_key'] . '&format=json';
+			
+		echo $url . "\n";
 
 		$json = get($url);
 		file_put_contents($filename, $json);
@@ -452,7 +454,15 @@ function get_title($TitleID, $force = false)
 	
 	foreach ($items as $item)
 	{
-		get_item($item, $force);
+		if (file_exists($TitleID . '/' . $item . '.html') && !$force)
+		{
+			echo "Already done item $item...\n";	
+		}
+		else
+		{	
+			echo "  Getting item $item...\n";
+			get_item($item, $force);
+		}
 	}	
 		
 	$thing = new stdclass;
@@ -504,6 +514,7 @@ function get_title($TitleID, $force = false)
 //----------------------------------------------------------------------------------------
 
 
+
 $titles = array(
 144396, // Beagle
 77508, // Journal of the Royal Society of Western Australia
@@ -513,7 +524,7 @@ $titles = array(
 14019, // Proceedings of the Royal Society of Queensland
 61893, // Records of the South Australian Museum
 144635, // Records of the Queen Victoria Museum Launceston
-281027, // Records of The Western Australian Museum
+125400, // Records of The Western Australian Museum
 16197, // Transactions and proceedings and report of the Royal Society of South Australia
 168316, // Transactions of The Royal Society of South Australia
 43746, // The Victorian Naturalist
@@ -521,9 +532,36 @@ $titles = array(
 
 $titles = array(
 144396, // Beagle
+77508, // Journal of the Royal Society of Western Australia
+//125400, // Records of The Western Australian Museum
+144635, // Records of the Queen Victoria Museum Launceston
+61449, // Memoirs of the Queensland Museum
+128759, // Nuytsia: journal of the Western Australian Herbarium
+142573, // Northern Territory Naturalist
+14019, // Proceedings of the Royal Society of Queensland
+61893, // Records of the South Australian Museum
+144635, // Records of the Queen Victoria Museum Launceston
+125400, // Records of The Western Australian Museum
+16197, // Transactions and proceedings and report of the Royal Society of South Australia
+168316, // Transactions of The Royal Society of South Australia
+43746, // The Victorian Naturalist
+
 );
 
-get_title($titles[0], false);
+$force = false;
+
+foreach ($titles as $title)
+{
+	if (file_exists($title . '.html') && !$force)
+	{
+		echo "Already done title $title...\n";	
+	}
+	else
+	{
+		echo "Doing title $title...\n";
+		get_title($title, false);
+	}
+}
 
 
 
