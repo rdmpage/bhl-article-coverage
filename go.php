@@ -136,6 +136,11 @@ function draw_things_html($thing, $width, $height, $show_grid = false)
   	{
   		$html .= '<div><a href="../' . $thing->parentId . '.html">Back to parent</a></div>';
   	}
+  	
+  	if (isset($thing->back))
+  	{
+  		$html .= '<div><a href="' . $thing->back . '">Back to parent</a></div>';
+  	}  	
   
   	$html .= '<h1>' . $thing->name . '</h1>';
   	
@@ -326,24 +331,27 @@ function get_item($ItemID, $force = false)
 	// we cycle through these if there are more articles than colours
 	$colour_index = 0;
 	
-	foreach ($item_articles->articles as $article)
+	if (isset($item_articles->articles))
 	{
-		$colour = $config['colours'][$colour_index];
+		foreach ($item_articles->articles as $article)
+		{
+			$colour = $config['colours'][$colour_index];
 		
-		foreach ($article->bhl_pages as $PageID)
-		{
-			$page_colours[$PageID] = $colour;
+			foreach ($article->bhl_pages as $PageID)
+			{
+				$page_colours[$PageID] = $colour;
 			
-			$page_to_biostor[$PageID] = $article->reference_id;
-		}	
+				$page_to_biostor[$PageID] = $article->reference_id;
+			}	
 	
-		$colour_index++;
-		if ($colour_index == count($config['colours']))
-		{
-			$colour_index = 0;
+			$colour_index++;
+			if ($colour_index == count($config['colours']))
+			{
+				$colour_index = 0;
+			}
 		}
 	}
-	
+		
 	// OK at this point we have the item ready to display so we generate HTML view
 	// with page thumbnails, and a thumbnail for whole item
 	
@@ -452,6 +460,7 @@ function get_title($TitleID, $force = false)
 
 	$thing->id = $TitleID;		
 	$thing->name = $title_data->Result->FullTitle;
+	$thing->back = ".";
 	
 	
 	foreach ($title_data->Result->Items as $item)
