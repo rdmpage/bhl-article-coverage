@@ -548,20 +548,88 @@ $titles = array(
 
 );
 
+$filename = "titles.tsv";
+
+$filename = "todo.tsv";
+
+
+// read from file list
+$headings = array();
+
+$row_count = 0;
+
+
+$titles = array();
+
+$file_handle = fopen($filename, "r");
+while (!feof($file_handle)) 
+{
+	$line = trim(fgets($file_handle));
+		
+	$row = explode("\t",$line);
+	
+	$go = is_array($row) && count($row) > 1;
+	
+	if ($go)
+	{
+		if ($row_count == 0)
+		{
+			$headings = $row;		
+		}
+		else
+		{
+			$obj = new stdclass;
+		
+			foreach ($row as $k => $v)
+			{
+				if ($v != '')
+				{
+					$obj->{$headings[$k]} = $v;
+				}
+			}
+		
+			print_r($obj);	
+			
+			$titles[]  = $obj;
+		}
+	}	
+	$row_count++;	
+	
+}	
+
+print_r($titles);
+
+//exit();
+
+
 $force = false;
 
 foreach ($titles as $title)
 {
-	if (file_exists($title . '.html') && !$force)
+	$TitleID = $title->TitleID;
+	if (file_exists($TitleID . '.html') && !$force)
 	{
-		echo "Already done title $title...\n";	
+		echo "Already done title $TitleID...\n";	
 	}
 	else
 	{
-		echo "Doing title $title...\n";
-		get_title($title, false);
+		echo "Doing title $TitleID...\n";
+		get_title($TitleID, false);
 	}
 }
+
+$html = '';
+foreach ($titles as $title)
+{
+	$html .= '<tr>';
+	$html .= '<td>' . '<a href="' . $title->TitleID . '.html"><img src="' . $title->TitleID . '.png"></a>' . '</td>';
+	$html .= '<td>' . $title->FullTitle . '</td>';
+	$html .= '</tr>';
+	$html .= "\n";
+
+}
+
+file_put_contents('extra.html', $html);
 
 
 
