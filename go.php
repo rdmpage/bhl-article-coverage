@@ -161,13 +161,20 @@ function draw_things_html($thing, $width, $height, $show_grid = false)
 		}
 		
 		$html .= 'width:' . $square_size . 'px;height:' . $square_size . 'px;">';
-		$html .= '<a href="' . $obj->url . '"';
 		
+		if (isset($obj->biostor))
+		{
+			$html .= '<a href="http://direct.biostor.org/page_range_editor.php?reference_id=' . $obj->biostor . '"';
+		}
+		else
+		{
+			$html .= '<a href="' . $obj->url . '"';
+		}
 		if (isset($obj->name))
 		{
 			$html .= ' title="' . $obj->name . '"';
 		}
-		$html .= '>';	
+		$html .= ' target="_new" >';	
 		
 		if (isset($obj->imageUrl))
 		{
@@ -287,7 +294,7 @@ function get_item($ItemID, $force = false)
 	// get BHL item
 	$filename = $config['cache'] . '/' . $ItemID . '.json';
 
-	if (!file_exists($filename))
+	if (!file_exists($filename) || $force)
 	{
 		$url = 'https://www.biodiversitylibrary.org/api2/httpquery.ashx?op=GetItemMetadata&itemid=' 
 			. $ItemID . '&ocr=f&pages=t&apikey=' . $config['api_key'] . '&format=json';
@@ -378,6 +385,11 @@ function get_item($ItemID, $force = false)
 		// links
 		$obj->imageUrl = 'https://aipbvczbup.cloudimg.io/s/height/100/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200';
 		$obj->url = 'https://biodiversitylibrary.org/page/' . $page->PageID;
+		
+		if (isset($page_to_biostor[$page->PageID]))
+		{
+			$obj->biostor = $page_to_biostor[$page->PageID];
+		}
 		
 		// colour
 		$obj->colour = $page_colours[$page->PageID];
@@ -513,100 +525,121 @@ function get_title($TitleID, $force = false)
 
 //----------------------------------------------------------------------------------------
 
+//get_item(148431, true);
 
-
-$titles = array(
-144396, // Beagle
-77508, // Journal of the Royal Society of Western Australia
-61449, // Memoirs of the Queensland Museum
-128759, // Nuytsia: journal of the Western Australian Herbarium
-142573, // Northern Territory Naturalist
-14019, // Proceedings of the Royal Society of Queensland
-61893, // Records of the South Australian Museum
-144635, // Records of the Queen Victoria Museum Launceston
-125400, // Records of The Western Australian Museum
-16197, // Transactions and proceedings and report of the Royal Society of South Australia
-168316, // Transactions of The Royal Society of South Australia
-43746, // The Victorian Naturalist
-);
-
-$titles = array(
-144396, // Beagle
-77508, // Journal of the Royal Society of Western Australia
-//125400, // Records of The Western Australian Museum
-144635, // Records of the Queen Victoria Museum Launceston
-61449, // Memoirs of the Queensland Museum
-128759, // Nuytsia: journal of the Western Australian Herbarium
-142573, // Northern Territory Naturalist
-14019, // Proceedings of the Royal Society of Queensland
-61893, // Records of the South Australian Museum
-144635, // Records of the Queen Victoria Museum Launceston
-125400, // Records of The Western Australian Museum
-16197, // Transactions and proceedings and report of the Royal Society of South Australia
-168316, // Transactions of The Royal Society of South Australia
-43746, // The Victorian Naturalist
-
-);
-
-$filename = "titles.tsv";
-
-$filename = "mnhn.tsv";
-
-
-// read from file list
-$headings = array();
-
-$row_count = 0;
-
-
-$titles = array();
-
-$file_handle = fopen($filename, "r");
-while (!feof($file_handle)) 
-{
-	$line = trim(fgets($file_handle));
-		
-	$row = explode("\t",$line);
-	
-	$go = is_array($row) && count($row) > 1;
-	
-	if ($go)
+// titles from array
+if (0)
 	{
-		if ($row_count == 0)
-		{
-			$headings = $row;		
-		}
-		else
-		{
-			$obj = new stdclass;
-		
-			foreach ($row as $k => $v)
-			{
-				if ($v != '')
-				{
-					$obj->{$headings[$k]} = $v;
-				}
-			}
-		
-			print_r($obj);	
-			
-			$titles[]  = $obj;
-		}
-	}	
-	$row_count++;	
-	
-}	
+	$titles = array(
+	144396, // Beagle
+	77508, // Journal of the Royal Society of Western Australia
+	61449, // Memoirs of the Queensland Museum
+	128759, // Nuytsia: journal of the Western Australian Herbarium
+	142573, // Northern Territory Naturalist
+	14019, // Proceedings of the Royal Society of Queensland
+	61893, // Records of the South Australian Museum
+	144635, // Records of the Queen Victoria Museum Launceston
+	125400, // Records of The Western Australian Museum
+	16197, // Transactions and proceedings and report of the Royal Society of South Australia
+	168316, // Transactions of The Royal Society of South Australia
+	43746, // The Victorian Naturalist
+	);
 
-print_r($titles);
+	$titles = array(
+	144396, // Beagle
+	77508, // Journal of the Royal Society of Western Australia
+	//125400, // Records of The Western Australian Museum
+	144635, // Records of the Queen Victoria Museum Launceston
+	61449, // Memoirs of the Queensland Museum
+	128759, // Nuytsia: journal of the Western Australian Herbarium
+	142573, // Northern Territory Naturalist
+	14019, // Proceedings of the Royal Society of Queensland
+	61893, // Records of the South Australian Museum
+	144635, // Records of the Queen Victoria Museum Launceston
+	125400, // Records of The Western Australian Museum
+	16197, // Transactions and proceedings and report of the Royal Society of South Australia
+	168316, // Transactions of The Royal Society of South Australia
+	43746, // The Victorian Naturalist
+
+	);
+	
+	$titles = array(
+		174750, // Cryptogamie. Algologie
+	);
+		
+
+
+}
+
+// titles from file
+if (1)
+{
+
+	$filename = "titles.tsv";
+
+	$filename = "mnhn.tsv";
+	$filename = "redo.tsv";
+
+
+	// read from file list
+	$headings = array();
+
+	$row_count = 0;
+
+
+	$titles = array();
+
+	$file_handle = fopen($filename, "r");
+	while (!feof($file_handle)) 
+	{
+		$line = trim(fgets($file_handle));
+		
+		$row = explode("\t",$line);
+	
+		$go = is_array($row) && count($row) > 1;
+	
+		if ($go)
+		{
+			if ($row_count == 0)
+			{
+				$headings = $row;		
+			}
+			else
+			{
+				$obj = new stdclass;
+		
+				foreach ($row as $k => $v)
+				{
+					if ($v != '')
+					{
+						$obj->{$headings[$k]} = $v;
+					}
+				}
+		
+				print_r($obj);	
+			
+				$titles[]  = $obj;
+			}
+		}	
+		$row_count++;	
+	
+	}	
+
+	print_r($titles);
+
+}
 
 //exit();
 
 
 $force = false;
+$force = true;
 
 foreach ($titles as $title)
 {
 	$TitleID = $title->TitleID;
+	
+	
 	if (file_exists($TitleID . '.html') && !$force)
 	{
 		echo "Already done title $TitleID...\n";	
@@ -614,8 +647,10 @@ foreach ($titles as $title)
 	else
 	{
 		echo "Doing title $TitleID...\n";
-		get_title($TitleID, false);
+		get_title($TitleID, $force);
 	}
+	
+	// get_title($TitleID, $force);
 }
 
 $html = '';
