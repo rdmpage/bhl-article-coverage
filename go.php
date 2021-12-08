@@ -633,7 +633,7 @@ if (1)
 
 
 $force = false;
-$force = true;
+//$force = true;
 
 foreach ($titles as $title)
 {
@@ -643,6 +643,8 @@ foreach ($titles as $title)
 	if (file_exists($TitleID . '.html') && !$force)
 	{
 		echo "Already done title $TitleID...\n";	
+		echo "Updating title $TitleID...\n";
+		get_title($TitleID, $force);		
 	}
 	else
 	{
