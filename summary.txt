@@ -1,0 +1,213 @@
+id	title	num_pages	num_parts	mean_part_length	expected_parts	num_dois
+141	Flora australiensis:a description of the plants of the Australian territory	4365	0	0	436	0
+314	Notulae systematicae.	6773	595	9	752	0
+480	Journal of the Arnold Arboretum.	34314	1663	19	1806	1238
+514	Revue bryologique.	4747	0	0	474	0
+600	Adansonia; recueil d'observations botaniques	7357	3	28	263	0
+687	Contributions from the United States National Herbarium	30912	11	108	286	1
+730	Biologia Centrali-Americana :zoology, botany and archaeology	27876	37	28	995	0
+2087	Journal of the Washington Academy of Sciences.	41018	1637	3	13671	25
+2197	Bulletin of the British Museum (Natural History).	24211	429	41	590	102
+2198	Bulletin of the British Museum (Natural History).	7988	12	56	143	0
+2202	Bulletin of the British Museum (Natural History).	25786	666	34	758	361
+2359	Entomological news, and proceedings of the Entomological Section of the Academy of Natural Sciences of Philadelphia	27846	890	4	6960	0
+2510	Proceedings of the Entomological Society of Washington	52664	4672	8	6582	0
+2680	Journal of Hymenoptera research	6180	400	14	441	0
+3119	Tulane studies in zoology.	3376	38	23	147	30
+3882	Novitates zoologicae : a journal of zoology in connection with the Tring Museum.	25404	523	26	977	295
+3943	Proceedings of the California Academy of Sciences, 4th series.	43907	1060	27	1626	0
+3966	Proceedings of the California Academy of Sciences.	224	0	0	22	0
+4181	Proceedings of the Entomological Society of Philadelphia.	3192	43	30	106	0
+4274	Proceedings of the California Academy of Sciences.	962	1	14	68	0
+4949	Bulletin of the Southern California Academy of Sciences.	11372	261	7	1624	0
+5067	Bulletin of the British Museum (Natural History).	5308	66	68	78	66
+5361	Tulane studies in zoology and botany.	2750	76	24	114	1
+5943	Bulletin du Muséum national d'histoire naturelle.	53533	5407	6	8921	130
+6170	The Nautilus	38545	2590	4	9635	198
+6440	Bollettino della Società dei naturalisti in Napoli.	33655	7	14	2404	1
+6524	Archivos do Museu Nacional do Rio de Janeiro.	24180	442	16	1511	0
+6928	Annals of the South African Museum. Annale van die Suid-Afrikaanse Museum.	57092	638	53	1077	63
+7411	Proceedings of the California Academy of Sciences.	5570	26	24	232	7
+7414	The journal of the Bombay Natural History Society.	96082	6289	4	24019	0
+7519	Proceedings of the United States National Museum.	101711	2938	24	4238	2531
+7542	Botanical Museum leaflets, Harvard University.	9728	478	18	540	478
+7544	Sargentia :a continuation of the contributions from the Arnold Arboretum of Harvard University.	1634	11	139	12	11
+8074	Proceedings of the Washington Academy of Sciences.	7217	29	47	153	13
+8089	Journal of the New York Entomological Society.	40955	3518	9	4550	0
+8113	SIDA, contributions to botany	17097	2010	8	2137	1
+8115	Ibis	57132	59	16	3570	45
+8128	Smithsonian miscellaneous collections	121193	162	36	3366	8
+8145	Insecutor inscitiae menstruus.  	2226	203	7	317	46
+8269	Bollettino del Laboratorio di zoologia generale e agraria della R. Scuola superiore d'agricoltura in Portici	6026	97	26	232	0
+8641	Entomologische Zeitung.	41868	2113	9	4651	0
+8648	The Entomological magazine.	5554	51	17	326	0
+8649	Entomologische berichten	23770	260	4	5941	17
+8796	Revista del Museo de La Plata.	13796	10	16	862	1
+8981	Revue suisse de zoologie.	108092	3376	21	5147	3128
+9028	Journal of economic entomology	10914	146	5	2182	117
+9424	Entomologische Rundschau.	1791	350	2	893	0
+9479	Entomologische Mitteilungen.  	3832	104	8	478	86
+9494	Papers and proceedings of the Royal Society of Tasmania.	13001	66	14	928	28
+9614	Papilio	956	363	3	317	1
+9697	Proceedings of the Hawaiian Entomological Society	4262	75	13	327	36
+9698	Entomologische Nachrichten.	12644	1525	5	2528	45
+10009	Postilla.	8307	125	26	319	11
+10088	Tijdschrift voor entomologie	62276	1493	22	2831	0
+10241	Revista do Museu Paulista.  	8596	16	54	159	8
+10603	Revue zoologique africaine.	5276	156	14	377	53
+10776	Bollettino dei musei di zoologia ed anatomia comparata della R. Università di Torino.	7908	123	11	718	16
+12268	Bollettino della Società adriatica di scienze naturali in Trieste.	8308	3	12	692	0
+12411	Contributions from the University of Michigan Herbarium.	5908	184	19	311	0
+12678	Phytologia.	51587	4198	10	5158	1197
+12908	Bulletin du Muséum National d'Histoire Naturelle Sér. 3, Botanique	1316	6	23	57	0
+12920	Malacologia.	22204	148	44	505	0
+12931	Proceedings of the California Academy of Sciences.	1984	2	38	52	0
+13041	Memoirs of the National Museum, Melbourne	2172	68	19	114	43
+13264	Memórias do Instituto Oswaldo Cruz.	5402	129	17	317	109
+13398	Aves nuevas del Paraguay. Continuación á Azara. 	232	1	216	1	0
+13855	Bulletin du Muséum National d'Histoire Naturelle Section B,Adansonia, botanique, phytochimie	6399	426	13	492	0
+14019	Proceedings of the Royal Society of Queensland.	13218	136	15	881	23
+14109	Bulletin du Muséum National d'Histoire Naturelle Section B, Botanique, biologie et écologie végétales, phytochimie	788	28	25	31	0
+14373	Revista chilena de historia natural.	7344	6	6	1223	0
+14688	The Sarawak Museum journal.	1790	100	16	112	0
+14971	Insect life	3952	3	1	3947	0
+15400	Zeitschrift für Botanik	12080	0	0	1208	0
+16038	Proceedings of the California Academy of Natural Sciences.	808	3	4	201	0
+16059	Icones plantarum or figures, with brief descriptive characters and remarks, of new or rare plants, selected from the author's herbarium.	7548	0	0	754	0
+16197	Transactions and proceedings and report of the Royal Society of South Australia.	5004	29	20	250	0
+16211	Bulletin of the Brooklyn Entomological Society.	11344	971	6	1890	0
+16255	Atti della Società italiana di scienze naturali e del Museo civico di storia naturale di Milano.	8676	51	22	394	5
+16355	The Emu : official organ of the Australasian Ornithologists' Union	8072	48	4	2017	6
+16515	Flora australiensis: a description of the plants of the Australian territory	4416	0	0	441	0
+24065	Fernwort papers presented at a meeting of fern students, held in New York city, June 27, 1900, under the auspices of the Linnaean fern chapter ... .  	56	0	0	5	0
+36618	The Journal of parasitology.  	1660	219	6	276	214
+39684	Gayana.	6944	138	27	257	0
+39849	Annals - Entomological Society of America.  	1052	0	0	105	0
+39988	Gayana.	716	12	14	51	3
+40214	Spixiana.	9778	761	11	888	0
+40896	Gayana.	6026	165	14	430	0
+42204	Transactions of the Academy of Science of St. Louis.	27622	11	60	460	1
+42254	Publication.  Field Columbian Museum.	7992	5	160	50	0
+42255	Publication.  Field Museum of Natural History.	24750	89	42	589	1
+42256	Fieldiana.	29094	288	46	632	2
+42670	Spixiana.	5846	47	44	133	0
+42858	Zoologica : scientific contributions of the New York Zoological Society.	18958	847	16	1185	832
+43746	The Victorian Naturalist	38097	989	4	9523	4
+43750	Stuttgarter Beiträge zur Naturkunde.	14023	10	122	115	0
+44478	Annals of tropical medicine and parasitology.	6153	8	20	307	0
+44720	Entomologische Zeitschrift.	11632	10	3	3876	0
+44979	Boletim do Museu Goeldi (Museu Paraense) de Historia Natural e Ethnographia.	2710	3	95	28	0
+45400	Proceedings of the California Academy of Sciences.	1798	11	49	37	0
+45466	Boletín del Museo Nacional de Chile.	4646	6	16	290	0
+46370	Revista chilena de entomología	4918	190	11	447	0
+46639	Bulletin of the British Ornithologists' Club.	31460	2237	6	5243	0
+47024	Journal and proceedings of the Asiatic Society of Bengal.	14469	10	10	1446	0
+49174	Stuttgarter Beiträge zur Naturkunde.	9234	190	25	369	0
+49392	Stuttgarter Beiträge zur Naturkunde.	4298	247	15	286	0
+49914	Iberus : revista de la Sociedad Española de Malacología.	9834	414	14	702	0
+50012	Bollettino della Società zoologica italiana.	5958	1	9	661	0
+50067	Mémoires du Muséum d'histoire naturelle.	18894	1	11	1717	0
+50228	Iheringia.	9050	310	11	822	0
+50446	Bulletin	9374	316	11	852	188
+50899	Entomologische Blätter : internationale Monatsschrift für die Biologie der Käfer Europas unter besonderer Berücksichtigung der Forstentomologie.	5667	11	6	944	0
+51984	Bartonia;proceedings of the Philadelphia botanical club ...	4714	1	4	1177	0
+53542	Bulletin of the Natural History Museum.	1774	65	25	71	9
+53832	Liangqi baxing dongwu yanjiu = Acta herpetologica Sinica.	2248	18	5	449	0
+53833	Liangqi baxing dongwu yanjiu = Acta herpetologica Sinica	466	3	6	77	0
+53882	Bulletin of the British Museum (Natural History).	28012	452	57	491	169
+53883	Bulletin of the Natural History Museum.	1768	54	30	59	7
+57946	The Australian zoologist.	9056	265	15	603	0
+58640	Memoirs of the National Museum of Victoria	6780	271	18	376	165
+59883	Memoirs of Museum Victoria	4922	203	19	259	193
+60455	Atti della Società italiana di scienze naturali.	18700	8	35	534	0
+60982	The American journal of science.	49529	16	10	4952	13
+61449	Memoirs of the Queensland Museum	33140	1927	16	2071	34
+61654	Phytoneuron	11120	400	14	794	0
+61893	Records of the South Australian Museum	14409	380	22	655	0
+62169	The American naturalist.	53270	19	9	5918	6
+62492	Bulletin of the British Museum (Natural History).	7618	26	251	30	26
+62642	Bulletin of the Natural History Museum.	2084	82	20	104	18
+62643	Journal of the Lepidopterists' Society.	17522	1140	8	2190	0
+62815	Annals of the South African Museum. Annale van die Suid-Afrikaanse Museum.	57092	638	53	1077	63
+62896	Bulletin of the British Museum (Natural History). Mineralogy.	789	16	36	22	0
+63274	Bulletin of the British Museum (Natural History).	1262	6	168	7	6
+64180	Journal of the Straits Branch of the Royal Asiatic Society.	16115	471	20	806	0
+66573	Revista de la Academia Canaria de Ciencias.	6854	300	13	527	0
+66841	The veliger	23870	1828	7	3409	0
+68618	Insekten-Börse.	5800	5	2	2898	0
+68619	Insects of Samoa and other Samoan terrestrial arthropoda	2175	34	95	23	0
+68672	Ruwenzori Expedition 1952.	629	8	28	22	0
+68686	Bulletin du Muséum d'histoire naturelle	13114	1694	4	3277	56
+69296	Bollettino dei musei di zoologia ed anatomia comparata della R. Università di Torino.	7908	123	11	718	16
+77306	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+77367	The Gardens' bulletin; Straits Settlements.	5268	181	20	263	0
+77508	Journal of the Royal Society of Western Australia	18939	1535	11	1721	0
+78194	Mann's descriptive catalgoue 1923	50	0	0	5	0
+79640	Avicennia : revista de ecología, oceanología y biodiversidad tropical.	2770	182	10	277	0
+82240	Bonner zoologische Beiträge : Herausgeber: Zoologisches Forschungsinstitut und Museum Alexander Koenig, Bonn.	22394	1088	14	1599	0
+82295	Bonner zoologische Monographien	11268	27	118	95	0
+82521	Bonn zoological bulletin	2948	100	17	173	0
+87610	Journal of the Arnold Arboretum.	396	5	76	5	5
+94758	Entomologische Arbeiten aus dem Museum G. Frey Tutzing bei München	18734	475	27	694	0
+98946	Bonner zoologische Monographien	11268	27	118	95	0
+101582	American journal of botany	6810	395	14	486	395
+101952	Entomologische Monatsblätter.	328	1	14	23	0
+102724	Bulletin of the British Ornithologists' Club.	31460	2237	6	5243	0
+107243	Revista do Museu Paulista	8801	10	69	127	0
+108657	Papéis avulsos do Departamento de Zoologia	3502	68	14	250	0
+109981	Memoirs of Museum Victoria	4922	203	19	259	193
+112965	Muelleria: An Australian Journal of Botany	7808	585	12	650	0
+114382	Bollettino malacologico	10764	435	11	978	0
+116503	Annals of the Transvaal Museum	2900	11	38	76	0
+119522	Quaestiones entomologicae	14538	344	35	415	0
+121359	Kirtlandia.	2206	125	15	147	0
+122512	Memórias do Instituto Butantan	16744	139	17	985	0
+122696	Contributions in science	15099	573	22	686	573
+122978	Journal of the New York Entomological Society.	40955	3518	9	4550	0
+124505	Amphipacifica : journal of systematic biology.	1631	31	50	33	0
+125400	Records of the Western Australian Museum	13710	622	14	979	91
+127489	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+128759	Nuytsia: journal of the Western Australian Herbarium	9990	535	16	624	0
+128777	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+128790	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+128797	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+128809	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+128832	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+129346	Boletim do Museu Paraense Emílio Goeldi	3496	2	30	116	0
+129988	The Journal of research on the lepidoptera	12160	581	12	1013	0
+130490	The Pan-Pacific entomologist.	24081	2632	6	4013	0
+130872	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+135556	Journal of South African botany.	438	1	5	87	0
+136214	Annals of botany	31448	1615	14	2246	1518
+138348	Pacific science	10674	685	12	889	0
+141270	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+142219	Bulletin of the Brooklyn Entomological Society.	726	83	6	120	0
+142573	Northern Territory Naturalist	1468	227	6	244	0
+144396	The Beagle : occasional papers of the Northern Territory Museum of Arts and Sciences.	4898	378	12	408	368
+144635	Records of the Queen Victoria Museum Launceston	4016	141	23	174	0
+145272	Bulletin du Museum national d'histoire naturelle	2701	0	0	270	0
+146497	Memórias do Instituto Butantan	16744	139	17	985	0
+149559	Bulletin du Muséum national d'histoire naturelle.	11640	473	20	582	0
+149832	Adansonia	1052	84	10	105	0
+152577	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+152647	The Gardens' bulletin, Singapore.	22384	1023	18	1243	77
+153166	Richardiana.	4174	338	9	463	0
+154059	Contributions from the Arnold Arboretum of Harvard University.	1966	0	0	196	0
+155000	Mémoires du Muséum national d'histoire naturelle	36871	382	82	450	0
+157010	Telopea: Journal of plant systematics	10726	665	13	825	635
+157691	Atti della Società Italiana di Scienze Naturali e del Museo Civico di Storia Naturale in Milano.	36871	855	16	2304	0
+158815	Mémoires du Muséum national d'histoire naturelle. Série B, Botanique	8498	34	123	69	0
+158834	Bulletin du Muséum national d'histoire naturelle.	15116	759	18	840	0
+162187	Mémoires du Muséum national d'histoire naturelle	12181	288	30	406	0
+163263	The Western Australian Naturalist	7552	1762	4	1887	0
+166349	Mémoires du Muséum national d'histoire naturelle.	4991	64	40	125	0
+168316	Transactions of the Royal Society of South Australia.	9735	101	24	405	0
+169110	Adansonia	11107	837	12	925	0
+169282	Revue algologique	9250	0	0	925	0
+169356	Austrobaileya: A Journal of Plant Systematics	4273	313	12	356	0
+169357	Revue bryologique et lichenologique	15891	0	0	1589	0
+169397	Revue de mycologie	9224	6	6	1537	0
+173847	Records of the Auckland Institute and Museum.	4169	24	14	297	0
+174750	Cryptogamie. Algologie	6122	558	10	612	0
+175306	Cryptogamie. Mycologie	6758	0	0	675	0
+176213	Cryptogamie. Bryologie, lichenologie	8281	0	0	828	0
