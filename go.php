@@ -300,6 +300,7 @@ function get_item($ItemID, $force = false)
 	if (!file_exists($filename) || $force)
 	{
 		$url = 'http://direct.biostor.org/itemarticles.php?item=' . $ItemID;
+		$url = 'http://localhost/biostor-classic/www/itemarticles.php?item=' . $ItemID;
 
 		$json = get($url);
 		
@@ -512,6 +513,10 @@ $titles = array(
 
 $titles = array(
 144396, // Beagle
+);
+
+$titles = array(
+112965, // Muelleria
 );
 
 get_title($titles[0], false);
