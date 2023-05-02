@@ -164,7 +164,7 @@ function draw_things_html($thing, $width, $height, $show_grid = false)
 		
 		if (isset($obj->biostor))
 		{
-			$html .= '<a href="http://direct.biostor.org/page_range_editor.php?reference_id=' . $obj->biostor . '"';
+			$html .= '<a href="http://localhost/biostor-classic/www/page_range_editor.php?reference_id=' . $obj->biostor . '"';
 		}
 		else
 		{
@@ -313,7 +313,7 @@ function get_item($ItemID, $force = false)
 
 	if (!file_exists($filename) || $force)
 	{
-		$url = 'http://direct.biostor.org/itemarticles.php?item=' . $ItemID;
+		$url = 'http://localhost/biostor-classic/www/itemarticles.php?item=' . $ItemID;
 
 		$json = get($url);
 		
@@ -384,6 +384,10 @@ function get_item($ItemID, $force = false)
 		
 		// links
 		$obj->imageUrl = 'https://aipbvczbup.cloudimg.io/s/height/100/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200';
+		$obj->imageUrl = 'https://aezjkodskr.cloudimg.io/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200?height=100';
+
+		$obj->imageUrl = 'http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200?height=100';
+
 		$obj->url = 'https://biodiversitylibrary.org/page/' . $page->PageID;
 		
 		if (isset($page_to_biostor[$page->PageID]))
