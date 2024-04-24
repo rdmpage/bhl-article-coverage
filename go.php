@@ -388,6 +388,9 @@ function get_item($ItemID, $force = false)
 
 		$obj->imageUrl = 'http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200?height=100';
 
+		$obj->imageUrl = 'https://cinzusuzha.cloudimg.io/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . '?height=100';
+
+
 		$obj->url = 'https://biodiversitylibrary.org/page/' . $page->PageID;
 		
 		if (isset($page_to_biostor[$page->PageID]))
