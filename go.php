@@ -1,5 +1,6 @@
 <?php
 
+require_once(dirname(__FILE__) . '/colour.php');
 
 $config['cache']   = dirname(__FILE__) . '/cache';
 $config['colours'] = array("#FF6600", "#6666CC", "#FFFF99", '#66FF66');
@@ -93,30 +94,32 @@ function num_squares($num_pages, $width, $height)
 }
 
 //----------------------------------------------------------------------------------------
+// draw intercative grid of pages images for an item
 function draw_things_html($thing, $width, $height, $show_grid = false)
 {
 	global $config;
-	
+
 	// number of pages in item
 	$n = count($thing->things);
-	
+
 	// size of square
 	$square_size = num_squares($n, $width, $height);
-	
+
 	// spacing around image
-	$space = floor($config['spacing'] * $square_size);	
-	
-	
+	$space = floor($config['spacing'] * $square_size);
+
+	$has_pages = isset($thing->things[0]) && isset($thing->things[0]->pageId);
+
 	// html
-	
+
 	$html = '<html>';
-	
+
 	$html .= '<head>';
-	
+
 	if ($show_grid)
 	{
 		$html .= '<style>
-			/* https://codepen.io/rjanjic/pen/dKKaXa */	
+			/* https://codepen.io/rjanjic/pen/dKKaXa */
 			.grid {
 			background-image: linear-gradient(45deg, #dddddd 25%, transparent 25%), linear-gradient(-45deg, #dddddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #dddddd 75%), linear-gradient(-45deg, transparent 75%, #dddddd 75%);
 		  background-size: 40px 40px;
@@ -126,45 +129,68 @@ function draw_things_html($thing, $width, $height, $show_grid = false)
   	}
   	else
   	{
-  		$html .= '<style>.grid{}</style>';  	
+  		$html .= '<style>.grid{
+  		background-color:#999;
+  		}</style>';
   	}
-  
+
+  	if ($has_pages)
+  	{
+  		$html .= '<style>
+  		.container { display:flex; gap:20px; align-items:flex-start; }
+  		#preview-panel { position:sticky; top:20px; text-align:center; background:#f5f5f5; border:1px solid #ccc; padding:10px; font-family:sans-serif; height:' . $height . 'px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; }
+  		#preview-img { height:' . ($height - 50) . 'px; object-fit:contain; }
+  		#preview-caption { margin-top:8px; color:#333; }
+  		</style>';
+
+  		$html .= '<script>
+  		function showPreview(img) {
+  			var pageId = img.getAttribute("data-pageid");
+  			var name = img.getAttribute("data-name") || "";
+  			document.getElementById("preview-placeholder").style.display = "none";
+  			var previewImg = document.getElementById("preview-img");
+  			previewImg.src = "https://biodiversitylibrary.org/pageimage/" + pageId;
+  			previewImg.style.display = "block";
+  			document.getElementById("preview-caption").textContent = name;
+  		}
+  		</script>';
+  	}
+
   	$html .= '</head>
   	<body>';
-  
+
   	if (isset($thing->parentId))
   	{
   		$html .= '<div><a href="../' . $thing->parentId . '.html">Back to parent</a></div>';
   	}
-  	
+
   	if (isset($thing->back))
   	{
   		$html .= '<div><a href="' . $thing->back . '">Back to parent</a></div>';
-  	}  	
-  
+  	}
+
   	$html .= '<h1>' . $thing->name . '</h1>';
-  	
+
   	if (isset($thing->description))
   	{
   		$html .= '<p>' . $thing->description . '</p>';
-  	}	
-	
-	$html .= '<div class="grid" style="position:relative;width:' . $width . 'px;height:' . $height . 'px;">';
-	
+  	}
+
+	if ($has_pages)
+	{
+		$html .= '<div class="container">';
+	}
+
+	$html .= '<div class="grid" style="position:relative;width:' . $width . 'px;height:' . $height . 'px;flex-shrink:0;">';
+
 	foreach ($thing->things as $obj)
 	{
-		$html .= '<div style="position:relative;float:left;';
-		
-		if (isset($obj->colour))
-		{
-			$html .= 'background-color:' . $obj->colour . ';';
-		}
-		
-		$html .= 'width:' . $square_size . 'px;height:' . $square_size . 'px;">';
-		
+		$html .= '<div style="position:relative;float:left;width:' . $square_size . 'px;height:' . $square_size . 'px;">';
+
+		// Link covers the whole cell (colored background is clickable)
 		if (isset($obj->biostor))
 		{
-			$html .= '<a href="http://localhost/biostor-classic/www/page_range_editor.php?reference_id=' . $obj->biostor . '"';
+			$html .= '<a href="http://localhost/biostor-classic/www/page_range_editor.php?reference_id=' . $obj->biostor . '" target=_new"';
 		}
 		else
 		{
@@ -174,29 +200,51 @@ function draw_things_html($thing, $width, $height, $show_grid = false)
 		{
 			$html .= ' title="' . $obj->name . '"';
 		}
-		$html .= ' target="_new" >';	
-		
-		if (isset($obj->imageUrl))
+		$html .= ' target="_new" style="display:block;position:absolute;top:0;left:0;width:100%;height:100%;';
+		if (isset($obj->colour))
 		{
-			$html .= '<img style="object-fit:contain;position:absolute;top:' . $space . 'px;left:' . $space . 'px;width:' . ($square_size - 2 * $space) . 'px;height:' . ($square_size - 2 * $space) . 'px;" src="' . $obj->imageUrl . '" />';		
+			$html .= 'background-color:' . $obj->colour . ';';
+		}
+		$html .= '">';
+		if (isset($obj->imageUrl) && !$has_pages)
+		{
+			$html .= '<img style="object-fit:contain;position:absolute;top:' . $space . 'px;left:' . $space . 'px;width:' . ($square_size - 2 * $space) . 'px;height:' . ($square_size - 2 * $space) . 'px;" src="' . $obj->imageUrl . '" />';
 		}
 		$html .= '</a>';
-		$html .= '</div>';	
-		
-	
+
+		if (isset($obj->imageUrl) && $has_pages)
+		{
+			$html .= '<img onclick="showPreview(this);"';
+			if (isset($obj->pageId))
+			{
+				$html .= ' data-pageid="' . $obj->pageId . '"';
+			}
+			if (isset($obj->name))
+			{
+				$html .= ' data-name="' . htmlspecialchars($obj->name, ENT_QUOTES) . '"';
+			}
+			$html .= ' style="object-fit:contain;position:absolute;top:' . $space . 'px;left:' . $space . 'px;width:' . ($square_size - 2 * $space) . 'px;height:' . ($square_size - 2 * $space) . 'px;cursor:zoom-in;" src="' . $obj->imageUrl . '" />';
+		}
+
+		$html .= '</div>';
 	}
-		
 
 	$html .= '</div>';
+
+	if ($has_pages)
+	{
+		$html .= '<div id="preview-panel"><div id="preview-placeholder" style="color:#666;padding:40px 0;">Click a page to preview</div><img id="preview-img" src="" style="display:none;" /><div id="preview-caption"></div></div>';
+		$html .= '</div>';
+	}
+
 	$html .= '</body>';
 	$html .= '</html>';
-
 
 	return $html;
 }
 
 //----------------------------------------------------------------------------------------
-// draw simple coloured grid of the objects
+// draw thumbnail of item
 function draw_things_svg($thing, $width, $height)
 {
 	$svg = '<?xml version="1.0" encoding="UTF-8"?>
@@ -211,8 +259,7 @@ function draw_things_svg($thing, $width, $height)
 	$square_size = num_squares($n, $width, $height);
 	
 	$num_cols = floor($width / $square_size);
-	
-	
+		
 	$count = 0;
 	$row = 0;
 	$col = 0;
@@ -237,10 +284,9 @@ function draw_things_svg($thing, $width, $height)
 }
 
 //----------------------------------------------------------------------------------------
-// draw grid of thumbnails of objects
+// title-level thumbnail based on grid of item thumbnails
 function draw_things_svg_thumbnail($thing, $width, $height)
 {
-
 	// number of pages in item
 	$n = count($thing->things);
 	
@@ -255,8 +301,6 @@ function draw_things_svg_thumbnail($thing, $width, $height)
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="' . $svg_height . '" width="' . $svg_width . '">';
 
 	$svg .= '<rect x="0" y="0" width="' . $svg_width . '" height="' . $svg_height . '" fill="rgb(192,192,192)" />';
-	
-
 	
 	$count = 0;
 	$row = 0;
@@ -281,7 +325,6 @@ function draw_things_svg_thumbnail($thing, $width, $height)
 	
 	return $svg;
 }
-
 
 //----------------------------------------------------------------------------------------
 
@@ -342,8 +385,9 @@ function get_item($ItemID, $force = false)
 	
 	if (isset($item_articles->articles))
 	{
-		foreach ($item_articles->articles as $article)
+		foreach ($item_articles->articles as $article_number => $article)
 		{
+			/*
 			$colour = $config['colours'][$colour_index];
 		
 			foreach ($article->bhl_pages as $PageID)
@@ -358,6 +402,22 @@ function get_item($ItemID, $force = false)
 			{
 				$colour_index = 0;
 			}
+			*/
+			
+			$h = $article_number * 137.6;
+			$c = 80;
+			$l = 80;
+			
+			$rgb = fromHCL($h, $c, $l);
+
+			$browser = 'rgb(' . round($rgb[0], 0) . ',' . round($rgb[1], 0) . ',' . round($rgb[2], 0) . ')';
+			
+			foreach ($article->bhl_pages as $PageID)
+			{
+				$page_colours[$PageID] = $browser;
+			
+				$page_to_biostor[$PageID] = $article->reference_id;
+			}	
 		}
 	}
 		
@@ -383,14 +443,26 @@ function get_item($ItemID, $force = false)
 		}
 		
 		// links
-		$obj->imageUrl = 'https://aipbvczbup.cloudimg.io/s/height/100/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200';
-		$obj->imageUrl = 'https://aezjkodskr.cloudimg.io/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200?height=100';
-
+		
+		// BHL direct
 		$obj->imageUrl = 'http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200?height=100';
 
+		// cloudimg
+		$obj->imageUrl = 'https://aipbvczbup.cloudimg.io/s/height/100/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200';
+		$obj->imageUrl = 'https://aezjkodskr.cloudimg.io/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200?height=100';
 		$obj->imageUrl = 'https://cinzusuzha.cloudimg.io/http://biodiversitylibrary.org/pagethumb/' . $page->PageID . '?height=100';
+		
+		// local image proxy
+		$obj->imageUrl = '../image_proxy.php?url=https://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',100,100';
 
+		// BHL Light
+		$obj->imageUrl = 'https://bhl-light-806b8b6fa073.herokuapp.com/pagethumb/' . $page->PageID;
+		$obj->imageUrl = 'https://iphylo.org/bhl-light/pagethumb/' . $page->PageID;
 
+		// BHL direct
+		$obj->imageUrl = 'http://biodiversitylibrary.org/pagethumb/' . $page->PageID . ',200,200?height=100';
+		
+		// link to BHL page
 		$obj->url = 'https://biodiversitylibrary.org/page/' . $page->PageID;
 		
 		if (isset($page_to_biostor[$page->PageID]))
@@ -398,14 +470,17 @@ function get_item($ItemID, $force = false)
 			$obj->biostor = $page_to_biostor[$page->PageID];
 		}
 		
+		// page ID for preview
+		$obj->pageId = $page->PageID;
+
 		// colour
 		$obj->colour = $page_colours[$page->PageID];
-		
+
 		$thing->things[] = $obj;
 	
 	}
 	
-	$html = draw_things_html($thing, $config['width'], $config['height'], true);
+	$html = draw_things_html($thing, $config['width'], $config['height'], false);
 	
 	//print_r($thing);
 	
@@ -515,7 +590,6 @@ function get_title($TitleID, $force = false)
 	file_put_contents($html_filename, $html);
 	
 	// thumbnail for whole title
-	
 	$svg = draw_things_svg_thumbnail($thing, $config['width'], $config['height']);
 	
 	$svg_filename = $thing->id  . '.svg';
@@ -645,7 +719,6 @@ $force = true;
 foreach ($titles as $title)
 {
 	$TitleID = $title->TitleID;
-	
 	
 	if (file_exists($TitleID . '.html') && !$force)
 	{
